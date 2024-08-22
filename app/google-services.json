@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "895829926223",
+    "project_id": "readit-e434c",
+    "storage_bucket": "readit-e434c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895829926223:android:875f9e20bb94398f5ea53a",
+        "android_client_info": {
+          "package_name": "com.example.readit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxxZV3OFJg4RdBWXQEtce9nHx8dnD7H9U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
