@@ -1,18 +1,23 @@
 package com.example.readit.data
 
+import com.example.readit.models.User
+import com.example.readit.navigation.ROUT_HOME
+import com.example.readit.navigation.ROUT_LOGIN
+import com.example.readit.navigation.ROUT_SIGNUP
+
+
 import android.app.ProgressDialog
 import android.content.Context
 import android.widget.Toast
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import com.example.propertyplusk.models.User
-import com.example.readit.navigation.ROUT_HOME
-import com.example.readit.navigation.ROUT_LOGIN
-import com.example.readit.navigation.ROUT_SIGNUP
+import com.example.readit.navigation.ADD_BOOK
+import com.example.readit.navigation.ROUT_MENU
+
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-class AuthViewModel {class AuthViewModel(var navController: NavController, var context: Context){
+
+class AuthViewModel(var navController: NavController, var context: Context){
     val mAuth: FirebaseAuth
     val progress: ProgressDialog
 
@@ -23,13 +28,13 @@ class AuthViewModel {class AuthViewModel(var navController: NavController, var c
         progress.setMessage("Please wait...")
     }
     fun signup(name:String, email:String, password:String,confpassword:String){
-
+        progress.show()
 
         if (email.isBlank() || password.isBlank() ||confpassword.isBlank()){
-
-            Toast.makeText(context,"Please email and password cannot be blank",Toast.LENGTH_LONG).show()
+            progress.dismiss()
+            Toast.makeText(context,"Please email and password cannot be blank", Toast.LENGTH_LONG).show()
         }else if (password != confpassword){
-            Toast.makeText(context,"Password do not match",Toast.LENGTH_LONG).show()
+            Toast.makeText(context,"Password do not match", Toast.LENGTH_LONG).show()
         }else{
             mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {
                 if (it.isSuccessful){
@@ -39,11 +44,11 @@ class AuthViewModel {class AuthViewModel(var navController: NavController, var c
                     regRef.setValue(userdata).addOnCompleteListener {
 
                         if (it.isSuccessful){
-                            Toast.makeText(context,"Registered Successfully",Toast.LENGTH_LONG).show()
+                            Toast.makeText(context,"Registered Successfully", Toast.LENGTH_LONG).show()
                             navController.navigate(ROUT_LOGIN)
 
                         }else{
-                            Toast.makeText(context,"${it.exception!!.message}",Toast.LENGTH_LONG).show()
+                            Toast.makeText(context,"${it.exception!!.message}", Toast.LENGTH_LONG).show()
                             navController.navigate(ROUT_SIGNUP)
                         }
                     }
@@ -56,17 +61,18 @@ class AuthViewModel {class AuthViewModel(var navController: NavController, var c
     }
 
     fun login(email: String, password: String){
-        progress.show()
 
         if (email.isBlank() || password.isBlank()){
-            progress.dismiss()
-            Toast.makeText(context,"Please email and password cannot be blank",Toast.LENGTH_LONG).show()
-        }else {
+            Toast.makeText(context,"Please email and password cannot be blank", Toast.LENGTH_LONG).show()
+        }
+        else if (email == "admin@gmail.com" && password == "123456"){
+            navController.navigate(ROUT_LOGIN)
+        }
+        else {
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-                progress.dismiss()
-                if (it.isSuccessful){
+                if (it.isSuccessful ){
                     Toast.makeText(this.context, "Success", Toast.LENGTH_SHORT).show()
-                    navController.navigate(ROUT_HOME)
+                    navController.navigate(ADD_BOOK)
                 }else{
                     Toast.makeText(this.context, "Error", Toast.LENGTH_SHORT).show()
                 }
@@ -74,7 +80,6 @@ class AuthViewModel {class AuthViewModel(var navController: NavController, var c
 
         }
     }
-
     fun logout(){
         mAuth.signOut()
         navController.navigate(ROUT_LOGIN)
@@ -82,5 +87,4 @@ class AuthViewModel {class AuthViewModel(var navController: NavController, var c
 
     fun isLoggedIn(): Boolean = mAuth.currentUser != null
 
-}
 }

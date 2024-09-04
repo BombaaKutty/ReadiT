@@ -138,7 +138,7 @@ fun LoginScreen(navController: NavController){
         Spacer(modifier = Modifier.height(10.dp))
 
         val context = LocalContext.current
-        val authViewModel = AuthViewModel.AuthViewModel(navController, context)
+        val authViewModel = AuthViewModel(navController, context)
 
         Button(
             onClick = { authViewModel.login( email, password) },

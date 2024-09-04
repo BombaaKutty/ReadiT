@@ -1,4 +1,4 @@
-package com.example.propertyplusk.models
+package com.example.readit.models
 
 class User {
     var name:String = ""

@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.readit.navigation.AppNavHost
-import com.example.readit.ui.theme.screens.details.FileUploader
 
 
 class MainActivity : ComponentActivity() {
@@ -14,7 +13,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppNavHost()
-            FileUploader()
         }
     }
 }

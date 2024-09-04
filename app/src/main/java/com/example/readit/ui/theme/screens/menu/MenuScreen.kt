@@ -4,6 +4,7 @@ package com.example.readit.ui.theme.screens.menu
 
 import android.annotation.SuppressLint
 import android.inputmethodservice.Keyboard.Row
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,13 +14,17 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material3.Button
@@ -35,6 +40,7 @@ import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -46,11 +52,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.readit.ui.theme.Brown
+import com.example.readit.ui.theme.PurpleGrey80
 import com.example.readit.ui.theme.screens.home.HomeScreen
 import kotlinx.coroutines.launch
 
@@ -94,7 +103,73 @@ fun MenuScreen(navController:NavController){
                         onClick = { selectedItem = index })
                 }
             }
-        }) {}
+        }) {
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
+
+            TopAppBar(
+                title = {
+                    Text(
+                        text = "Reading Now",
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                },
+
+                colors = TopAppBarDefaults.mediumTopAppBarColors(Brown),
+                navigationIcon = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(
+                            imageVector = Icons.Default.Menu,
+                            contentDescription = "Menu",
+                            tint = Color.White
+                        )
+
+                    }
+                },
+
+                actions = {
+                    IconButton(onClick = { /*TODO*/ }) {
+
+                        Icon(
+                            imageVector = Icons.Default.Notifications,
+                            contentDescription = "Notifications",
+                            tint = Color.White
+                        )
+
+                    }
+                    IconButton(onClick = { /*TODO*/ }) {
+
+                        Icon(
+                            imageVector = Icons.Default.Search,
+                            contentDescription = "Search",
+                            tint = Color.White
+                        )
+
+                    }
+                    IconButton(onClick = { /*TODO*/ }) {
+
+                        Icon(
+                            imageVector = Icons.Default.Settings,
+                            contentDescription = "Settings",
+                            tint = Color.White
+                        )
+
+                    }
+
+
+                }
+            )
+            Column(
+                modifier = Modifier
+                    .background(PurpleGrey80)
+                    .verticalScroll(rememberScrollState())
+            ) {
+            }
+
+        }
+    }
 
 
 }
@@ -118,8 +193,8 @@ private fun DrawerHeader() {
 
 @Composable
 @Preview(showBackground = true)
-fun HomeScreenPreview(){
+fun MenuScreenPreview(){
 
-    HomeScreen(navController = rememberNavController())
+    MenuScreen(navController = rememberNavController())
     
 }
