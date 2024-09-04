@@ -1,8 +1,5 @@
 package com.example.readit.navigation
 
-import android.content.Context
-import android.net.Uri
-import android.window.SplashScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -10,15 +7,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.readit.ui.theme.screens.about.AboutScreen
-import com.example.readit.ui.theme.screens.details.FileUploader
-import com.example.readit.ui.theme.screens.details.fileReader
-import com.example.readit.ui.theme.screens.details.fileReader
+import com.example.readit.ui.theme.screens.bookmanager.AddBookScreen
+import com.example.readit.ui.theme.screens.bookmanager.ViewBookScreen
 import com.example.readit.ui.theme.screens.home.HomeScreen
 import com.example.readit.ui.theme.screens.login.LoginScreen
 import com.example.readit.ui.theme.screens.menu.MenuScreen
+import com.example.readit.ui.theme.screens.products.AddProductsScreen
+import com.example.readit.ui.theme.screens.products.ViewProductsScreen
 import com.example.readit.ui.theme.screens.signup.SignUpScreen
 import com.example.readit.ui.theme.screens.splash.SplashScreen
-import java.io.FileReader
 
 
 @Composable
@@ -50,11 +47,20 @@ fun AppNavHost(
         composable(ROUT_LOGIN) {
             LoginScreen(navController = navController)
         }
-        composable(ROUT_FILEPICKER) {
-            FileUploader()
+        composable(ADD_BOOK){
+            AddBookScreen(navController = navController)
+        }
+        composable(VIEW_BOOKS){
+            ViewBookScreen(navController = navController)
         }
         composable(ROUT_MENU) {
             MenuScreen(navController = navController)
+        }
+        composable(ADD_PRODUCTS_URL) {
+            AddProductsScreen(navController = navController)
+        }
+        composable(VIEW_PRODUCTS_URL) {
+            ViewProductsScreen(navController = navController)
         }
 
     }

@@ -189,7 +189,7 @@ fun SignUpScreen(navController: NavController){
         Spacer(modifier = Modifier.height(30.dp))
 
         val context = LocalContext.current
-        val authViewModel = AuthViewModel.AuthViewModel(navController, context)
+        val authViewModel = AuthViewModel(navController, context)
         Button(
             onClick = { authViewModel.signup(name, email, password,confpassword) },
             modifier = Modifier
