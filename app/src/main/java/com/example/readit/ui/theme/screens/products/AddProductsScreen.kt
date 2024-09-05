@@ -152,7 +152,7 @@ fun AddProductsScreen(navController:NavHostController){
                     containerColor = Color.LightGray
                 ) {
                     IconButton(onClick = {
-                        navController.navigate(ADD_BOOK)
+                        navController.navigate("")
                     }) {
                         Icon(imageVector = Icons.Default.Add,
                             contentDescription = "menu")

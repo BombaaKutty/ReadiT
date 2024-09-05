@@ -122,7 +122,7 @@ fun HomeScreen(navController:NavController){
                 colors = TopAppBarDefaults.mediumTopAppBarColors(Brown),
                 navigationIcon = {
                     IconButton(onClick = {
-                            navController.navigate(ADD_PRODUCTS_URL)
+                            navController.navigate("")
                         }) {
                         Icon(
                             imageVector = Icons.Default.Menu,

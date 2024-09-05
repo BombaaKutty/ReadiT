@@ -92,7 +92,7 @@ fun AddBookScreen(navController: NavHostController) {
                 Icon(
                     imageVector = Icons.Default.Home,
                     contentDescription = null,
-                    modifier = Modifier.clickable { navController.navigate(ROUT_HOME) },
+                    modifier = Modifier.clickable { navController.navigate("") },
                     tint = Color.Black
                 )
                 Spacer(modifier = Modifier.width(5.dp))
