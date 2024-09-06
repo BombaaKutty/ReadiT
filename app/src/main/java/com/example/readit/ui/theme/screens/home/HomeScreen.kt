@@ -60,6 +60,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.readit.navigation.ADD_PRODUCTS_URL
+import com.example.readit.navigation.ROUT_MENU
 import com.example.readit.ui.theme.Brown
 import com.example.readit.ui.theme.PurpleGrey80
 import com.example.readit.ui.theme.screens.home.HomeScreen
@@ -122,7 +123,7 @@ fun HomeScreen(navController:NavController){
                 colors = TopAppBarDefaults.mediumTopAppBarColors(Brown),
                 navigationIcon = {
                     IconButton(onClick = {
-                            navController.navigate("")
+                            navController.navigate( ROUT_MENU )
                         }) {
                         Icon(
                             imageVector = Icons.Default.Menu,

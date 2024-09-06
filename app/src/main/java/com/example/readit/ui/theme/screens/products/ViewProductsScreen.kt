@@ -120,7 +120,6 @@ fun ViewProductsScreen(navController:NavHostController) {
                     imageVector = Icons.Default.Info,
                     contentDescription = null,
                     modifier = Modifier.clickable {
-                        navController.navigate(ROUT_ABOUT)
                     },
                     tint = Color.Black
                 )
@@ -129,9 +128,6 @@ fun ViewProductsScreen(navController:NavHostController) {
                     text = "Help",
                     color = Color.Black,
                     fontWeight = FontWeight.SemiBold,
-                    modifier = Modifier.clickable {
-                        navController.navigate(ROUT_ABOUT)
-                    }
                 )
             }
         }
@@ -256,6 +252,7 @@ fun ViewProductsScreen(navController:NavHostController) {
                             ProductItem(
                                 name = it.name,
                                 price = it.price,
+                                phone = it.phone,
                                 id = it.id,
                                 navController = navController,
                                 productRepository = productRepository,
@@ -278,7 +275,7 @@ fun ViewProductsScreen(navController:NavHostController) {
 
 
 @Composable
-fun ProductItem(name:String, price:String, id:String,
+fun ProductItem(name:String, price:String, phone:String, id:String,
                 navController:NavHostController,
                 productRepository:ProductViewModel, productImage:String) {
 
@@ -323,6 +320,14 @@ fun ProductItem(name:String, price:String, id:String,
                         Spacer(modifier = Modifier.height(5.dp))
 
                         Text(text = "Price : Ksh.$price",
+                            fontSize = 19.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.Default,
+                            color = Color.White
+                        )
+                        Spacer(modifier = Modifier.height(5.dp))
+
+                        Text(text = "Phone : Ksh.$phone",
                             fontSize = 19.sp,
                             fontWeight = FontWeight.Bold,
                             fontFamily = FontFamily.Default,

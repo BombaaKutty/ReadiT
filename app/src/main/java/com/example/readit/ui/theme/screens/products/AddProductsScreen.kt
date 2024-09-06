@@ -152,7 +152,7 @@ fun AddProductsScreen(navController:NavHostController){
                     containerColor = Color.LightGray
                 ) {
                     IconButton(onClick = {
-                        navController.navigate("")
+                        navController.navigate( ADD_PRODUCTS_URL)
                     }) {
                         Icon(imageVector = Icons.Default.Add,
                             contentDescription = "menu")
@@ -201,9 +201,6 @@ fun AddProductsScreen(navController:NavHostController){
                             Icon(
                                 imageVector = Icons.Default.Info,
                                 contentDescription = null,
-                                modifier = Modifier.clickable {
-                                    navController.navigate(ROUT_ABOUT)
-                                },
                                 tint = Color.Black
                             )
                             Spacer(modifier = Modifier.width(4.dp))
@@ -211,9 +208,6 @@ fun AddProductsScreen(navController:NavHostController){
                                 text = "Help",
                                 color = Color.Black,
                                 fontWeight = FontWeight.SemiBold,
-                                modifier = Modifier.clickable {
-                                    navController.navigate(ROUT_ABOUT)
-                                }
                             )
                         }
                     }
@@ -253,6 +247,7 @@ fun AddProductsScreen(navController:NavHostController){
 
                     var productName by remember { mutableStateOf("") }
                     var productPrice by remember { mutableStateOf("") }
+                    var quantity by remember { mutableStateOf("") }
                     var phone by remember { mutableStateOf("") }
                     val context = LocalContext.current
 
@@ -293,7 +288,7 @@ fun AddProductsScreen(navController:NavHostController){
                     //---------------------IMAGE PICKER START-----------------------------------//
 
                     var modifier = Modifier
-                    ImagePicker(modifier,context, navController, productName.trim(), productPrice.trim(), phone.trim())
+                    ImagePicker(modifier,context, navController, productName.trim(), quantity.trim(), productPrice.trim(),phone.trim())
 
                     //---------------------IMAGE PICKER END-----------------------------------//
 
@@ -340,7 +335,7 @@ data class BottomNavItem(
 
 
 @Composable
-fun ImagePicker(modifier: Modifier = Modifier, context: Context,navController: NavHostController, name:String, price:String,phone:String) {
+fun ImagePicker(modifier: Modifier = Modifier, context: Context,navController: NavHostController, name:String,quantity:String, price:String,phone:String) {
     var hasImage by remember { mutableStateOf(false) }
     var imageUri by remember { mutableStateOf<Uri?>(null) }
 
@@ -387,7 +382,7 @@ fun ImagePicker(modifier: Modifier = Modifier, context: Context,navController: N
             Button(onClick = {
                 //-----------WRITE THE UPLOAD LOGIC HERE---------------//
                 var productRepository = ProductViewModel(navController,context)
-                productRepository.uploadProduct(name, price,phone,imageUri!!)
+                productRepository.uploadProduct(name,quantity, price,phone,imageUri!!)
 
 
             },

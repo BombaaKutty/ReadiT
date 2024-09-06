@@ -112,7 +112,6 @@ fun AddBookScreen(navController: NavHostController) {
                         imageVector = Icons.Default.Info,
                         contentDescription = null,
                         modifier = Modifier.clickable {
-                            navController.navigate(ROUT_ABOUT)
                         },
                         tint = Color.Black
                     )
@@ -121,9 +120,6 @@ fun AddBookScreen(navController: NavHostController) {
                         text = "Help",
                         color = Color.Black,
                         fontWeight = FontWeight.SemiBold,
-                        modifier = Modifier.clickable {
-                            navController.navigate(ROUT_ABOUT)
-                        }
                     )
                 }
             }

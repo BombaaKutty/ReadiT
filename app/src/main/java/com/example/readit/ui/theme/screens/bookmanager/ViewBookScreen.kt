@@ -111,16 +111,12 @@ fun ViewBookScreen(navController: NavHostController) {
                         imageVector = Icons.Default.Info,
                         contentDescription = null,
                         modifier = Modifier.clickable {
-                            navController.navigate(ROUT_ABOUT)
                         }
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
                         text = "Help",
                         fontWeight = FontWeight.SemiBold,
-                        modifier = Modifier.clickable {
-                            navController.navigate(ROUT_ABOUT)
-                        }
                     )
                 }
             }
@@ -257,7 +253,7 @@ fun BookItem(
                 ){
                     OutlinedButton(
                         onClick = {
-                            bookRepository.updateBook(title)
+                            bookRepository.updateBook(description)
                         },
                         shape = RoundedCornerShape(8.dp),
 
@@ -308,28 +304,8 @@ fun BookItem(
                                 Color.Gray
                             ),
                             shape = RoundedCornerShape(8.dp)
-                        ) {
-                            Row {
-                                Icon(imageVector = Icons.Default.KeyboardArrowDown, contentDescription = "read")
-                                Spacer(modifier = Modifier.width(3.dp))
-                                Text(
-                                    text = "Read",
-                                    color = Color.White
-                                )
-                            }
-                        }
+                        ) {}
                     }
-                    fun HomeScreen(context: Context, uri: Uri): ByteArray? {
-                        return try {
-                            val inputStream = context.contentResolver.openInputStream(uri)
-                            inputStream?.readBytes()
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                            null
-                        }
-                    }
-
-
 
                 }
                 //end of button row
